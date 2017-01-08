@@ -2,6 +2,7 @@ package sec.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,9 +26,19 @@ public class SignupController {
     }
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String submitForm(@RequestParam String name, @RequestParam String address) {
-        signupRepository.save(new Signup(name, address));
+    public String submitForm(@RequestParam String firstname, @RequestParam String lastname, @RequestParam String address) {
+        signupRepository.save(new Signup(firstname, lastname, address));
         return "done";
     }
-
+    
+    @RequestMapping(value = "/auth", method = RequestMethod.GET)
+    public String login() {
+        return "auth";
+    }
+    
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String userList(Model model) {
+        model.addAttribute("signups", signupRepository.findAll());
+        return "registerList";
+    }
 }

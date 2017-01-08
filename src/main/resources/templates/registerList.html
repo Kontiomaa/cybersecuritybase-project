@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>List of registered customers</title>
+    </head>
+    <body>
+        <p>Welcome!</p>
+        <div th:each="signup : ${signups}">
+            <span th:utext="${signup.firstname}"></span>
+            <span th:utext="${signup.lastname}"></span>
+            <span th:utext="${signup.address}"></span>
+        </div>
+        <br />
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
+    </body>
+</html>

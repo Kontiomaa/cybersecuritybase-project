@@ -7,6 +7,7 @@
     <body>
         <p>Welcome!</p>
         <div th:each="signup : ${signups}">
+            <!-- swap "th:utext" to "th:text" -->
             <span th:utext="${signup.firstname}"></span>
             <span th:utext="${signup.lastname}"></span>
             <span th:utext="${signup.address}"></span>

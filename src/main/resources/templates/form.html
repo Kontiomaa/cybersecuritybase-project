@@ -11,9 +11,12 @@
             <p><label for="firstname">First name</label>: <input type="text" name="firstname" id="firstname"/></p>
             <p><label for="lastname">Last name</label>: <input type="text" name="lastname" id="lastname"/></p>
             <p><label for="address">Address</label>: <input type="text" name="address" id="address"/></p>
+            <!-- uncomment the below input field -->
+            <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
             <p><input type="submit" value="Submit" /></p>
         </form>
 
+        <a href="evilform.html">Psst this is a cool site! (CSRF-attack)</a>
         <p></p>
     </body>
 </html>

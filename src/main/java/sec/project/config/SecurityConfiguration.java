@@ -23,6 +23,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().anyRequest().permitAll();
         //http.authorizeRequests().antMatchers("/","/form","/auth").permitAll().anyRequest().authenticated();
         http.formLogin().loginPage("/auth").permitAll().and().logout().logoutSuccessUrl("/form").permitAll();
+        //comment the below row!
+        http.csrf().disable();
     }
 
     @Autowired

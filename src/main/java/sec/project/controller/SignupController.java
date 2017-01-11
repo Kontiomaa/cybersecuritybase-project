@@ -24,6 +24,11 @@ public class SignupController {
     public String loadForm() {
         return "form";
     }
+    
+    @RequestMapping(value = "/evilform", method = RequestMethod.GET)
+    public String loadEvilForm() {
+        return "evilForm";
+    }
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String submitForm(@RequestParam String firstname, @RequestParam String lastname, @RequestParam String address) {

@@ -12,11 +12,26 @@ https://cybersecuritybase.github.io/project/
 
 Basically we were tasked to create a web application from a template that has at least five different flaws from the OWASP top ten list (https://www.owasp.org/index.php/Top_10_2013-Top_10). Explain how the flaws can be found and fixed.
 
+## Flaw A2-Broken Authentication and Session Management
+
+### Problem
+
+When creating a new user account or changing the password at the admin page, malicious users may see and use one of the other flaws to create new administrator accounts or change the password of an existing one's.
+
+### Verify
+
+### Fix
+
+- On the "registerList.html" file change the GET methods to POST and uncomment the csrf.token rows (part of another flaw we will fix later).
+- On the "signupController.java" file change the GET methods to POST on the newuser and newpassword @RequestMapping annotations.
+
 ## Flaw A3-Cross-Site Scripting (XSS)
 
 ### Problem
 
 The form (http://localhost:8080/form) allows scripts to be saved my malicious users and later run by other users (administrators) at the admin page (http://localhost:8080/admin).
+
+### Verify
 
 ### Fix
 
@@ -27,6 +42,8 @@ To fix the script execution at the page "http://localhost:8080/admin": in the fi
 ### Problem
 
 In SecurityConfiguration.java the line " http.authorizeRequests().anyRequest().permitAll(); " allows an attacker access the admin page (http://localhost:8080/admin) without authentication.
+
+### Verify
 
 ### Fix
 
@@ -42,13 +59,15 @@ When logging in on a HTTP connection the username and password can be intercepte
 
 By enabling HTTPS connection on the whole site, the login data will be sent securely.
 
-Do the following: under src\main\resources rename the file "application.properties.txt" to "application.properties". The file contains information to the application on how to use ssl and information on the certificate (instead of the port 8080 now use 8443). I have created a self signed certificate called keystore.p12 on the root of the project which will then be used. You can create your own key (at least on Windows) with the following command from your java installation's bin folder: (I ran it from C:\Program Files\Java\jdk1.8.0_111\bin) "keytool -genkey -alias mykey -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650".
+Do the following: under src\main\resources rename the file "application.properties.txt" to "application.properties" (Server needs to be stopped and started again). The file contains information to the application on how to use ssl and information on the certificate (instead of the port 8080 now use 8443). I have created a self signed certificate called keystore.p12 on the root of the project which will then be used. You can create your own key (at least on Windows) with the following command from your java installation's bin folder: (I ran it from C:\Program Files\Java\jdk1.8.0_111\bin) "keytool -genkey -alias mykey -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650".
 
 ## Flaw A8-Cross-Site Request Forgery (CSRF)
 
 ### Problem
 
 A malicious user could send data in secret on behalf of an unknowing user when he or she enters a compromized website or a website the malicious user controls. For simplicity I've added a link to the form page which leads to evilForm.html. The evil form will send a form in secret with the text "EVIL" in every field. The "damage" can be seen at the admin page.
+
+### Verify
 
 ### Fix
 

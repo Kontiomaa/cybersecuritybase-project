@@ -13,7 +13,24 @@
             <span th:utext="${signup.address}"></span>
         </div>
         <br />
-        <form th:action="@{/logout}" method="post">
+        <form th:action="@{/newuser}" method="GET">
+        <!--<form th:action="@{/newuser}" method="POST">-->
+            <input type="text" name="newuser" placeholder="Username" id="newuser"/>
+            <input type="text" name="newuserpass" placeholder="Password" id="newuserpass"/>
+            <!-- uncomment the below input field -->
+            <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+            <input type="submit" value="Add user"/>
+        </form>
+        <br />
+        <form th:action="@{/newpassword}" method="GET">
+        <!--<form th:action="@{/newpassword}" method="POST">-->
+            <input type="text" name="newpassword" placeholder="New Password" id="newpassword"/>
+            <!-- uncomment the below input field -->
+            <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+            <input type="submit" value="Change Password"/>
+        </form>
+        <br />
+        <form th:action="@{/logout}" method="POST">
             <input type="submit" value="Logout"/>
         </form>
     </body>
